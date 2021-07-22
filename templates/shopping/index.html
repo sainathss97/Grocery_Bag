@@ -42,14 +42,15 @@
                     
                     {% elif i.item_status == 'pending' %}
                     <strong><p class="text-info"> {{i.item_status|safe|title}}</p> </strong>
-                    
+                    <h6 class="card-subtitle mb-2 text-muted">{{i.date}}</h6>
                     {% elif i.item_status == 'bought'%}
                     <strong><p class="text-success"> {{i.item_status|safe|title}}</p></strong>
-
+                    <h6 class="card-subtitle mb-2 text-muted">{{i.date}}</h6>
                     {% else %}
                     <strong><p class="text-info">{{i.item_status|safe|title}}</p></strong>
         
                     {% endif %}
+                    
                     <a class="btn btn-warning" href="{% url 'update' i.id %}">Update</a>
                     <a class="btn btn-danger" href="{% url 'delete' i.id %}">Delete</a>
                 </div>

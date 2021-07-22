@@ -4,11 +4,11 @@
     <div class='container'>
         <div class='container'>
             <h1>Add Grocery List</h1>
-            <form>
+            <form method ='POST'>
+                {% csrf_token %}
                 <div class="form-group">
                     <label>Item name</label>
-                    <input type="text" class="form-control" placeholder="Item name" value={{item_name}}>
-        
+                    {{form.item_name}}        
                 </div>
                 <div class="form-group">
                     <label>Item quantity</label>
@@ -23,7 +23,8 @@
                     {{form.date}}
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Add" class="btn btn-danger">
+                              <p><input type="submit" value="Add" class="btn btn-primary ">  <span>  </span> <a class='btn btn-warning' href="{%url 'index' %}">Cancel</a></p>  
+
                 </div>
             </form>
         </div>
