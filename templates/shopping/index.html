@@ -1,0 +1,64 @@
+{% extends 'shopping/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Bag</title>
+</head>
+
+<body>
+        
+<h1>Grocery List!</h1>
+    <div class="card-body">
+        
+    
+        <form method="GET" style="margin-top: 10px;display: flex;float: right; ">
+            <h5 class="card-title">Search with Date:</h5>
+            <input type='text' name='search-area' value="{{search_input}}" placeholder="yyyy-mm-dd">
+            <input class="button" type="submit" value='Search'>
+        </form>
+    
+    </div>
+
+
+    <blockquote></blockquote>            
+
+
+
+    {% for i in item %}
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{i.item_name|safe|title}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{i.item_quantity}} Kgs</h6>
+        
+                    {% if i.item_status == 'not available' %}
+                    <strong><p class="text-danger"> {{i.item_status|safe|title}}</p></strong>
+                    
+                    {% elif i.item_status == 'pending' %}
+                    <strong><p class="text-info"> {{i.item_status|safe|title}}</p> </strong>
+                    
+                    {% elif i.item_status == 'bought'%}
+                    <strong><p class="text-success"> {{i.item_status|safe|title}}</p></strong>
+
+                    {% else %}
+                    <strong><p class="text-info">{{i.item_status|safe|title}}</p></strong>
+        
+                    {% endif %}
+                    <a class="btn btn-warning" href="{% url 'update' i.id %}">Update</a>
+                    <a class="btn btn-danger" href="{% url 'delete' i.id %}">Delete</a>
+                </div>
+            </div>
+        </div>
+    
+    {% endfor %}
+    <br>
+</body>
+
+</html>
+{% endblock content %}
